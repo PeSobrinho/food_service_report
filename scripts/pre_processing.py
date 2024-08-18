@@ -1,50 +1,51 @@
 import pandas as pd
+import create_dim_prato as dim_prato
 
 def pre_processing_data(data):
 
-    processed_data = data
+    pre_processed_data = data
 
     # Replacing all '-' values with NaN
 
-    processed_data = processed_data.replace('-', pd.NA) 
+    pre_processed_data = pre_processed_data.replace('-', pd.NA) 
 
     # Removing all rows with NaN in 'Prato' column
 
-    processed_data = processed_data.dropna(subset=['Prato'])
+    pre_processed_data = pre_processed_data.dropna(subset=['Prato'])
 
     # Removing rows with NaN in 'Turno' column
 
-    processed_data = processed_data.dropna(subset=['Turno'])
+    pre_processed_data = pre_processed_data.dropna(subset=['Turno'])
 
     # Replacing NaN values in 'Valor R$', 'à Pagar', 'Taxa', 'Frete' columns with 0
 
-    processed_data['Valor R$'] = processed_data['Valor R$'].fillna(0)
-    processed_data['à Pagar'] = processed_data['à Pagar'].fillna(0)
-    processed_data['Taxa'] = processed_data['Taxa'].fillna(0)
-    processed_data['Frete'] = processed_data['Frete'].fillna(0)
+    pre_processed_data['Valor R$'] = pre_processed_data['Valor R$'].fillna(0)
+    pre_processed_data['à Pagar'] = pre_processed_data['à Pagar'].fillna(0)
+    pre_processed_data['Taxa'] = pre_processed_data['Taxa'].fillna(0)
+    pre_processed_data['Frete'] = pre_processed_data['Frete'].fillna(0)
 
     # Replacing 'OK' values in 'pedido_pago' column with 1, and other values with 0
 
-    processed_data['Pago'] = processed_data['Pago'].replace('OK', 1)
-    processed_data['Pago'] = processed_data['Pago'].replace(pd.NA, 0)
+    pre_processed_data['Pago'] = pre_processed_data['Pago'].replace('OK', 1)
+    pre_processed_data['Pago'] = pre_processed_data['Pago'].replace(pd.NA, 0)
 
 
     # change data types
 
-    processed_data['Data'] = pd.to_datetime(processed_data['Data'], errors='coerce')
+    pre_processed_data['Data'] = pd.to_datetime(pre_processed_data['Data'], errors='coerce')
 
-    processed_data['Valor R$'] = processed_data['Valor R$'].astype(float, errors='ignore')
+    pre_processed_data['Valor R$'] = pd.to_numeric(pre_processed_data['Valor R$'], errors= 'coerce').fillna(0)
 
-    processed_data['à Pagar'] = processed_data['à Pagar'].astype(float, errors='ignore')
+    pre_processed_data['à Pagar'] = pd.to_numeric(pre_processed_data['à Pagar'], errors= 'coerce')
 
-    processed_data['Taxa'] = processed_data['Taxa'].astype(float, errors='ignore')
+    pre_processed_data['Taxa'] = pd.to_numeric(pre_processed_data['Taxa'], errors= 'coerce')
 
-    processed_data['Frete'] = processed_data['Frete'].astype(float, errors='ignore')
+    pre_processed_data['Frete'] = pd.to_numeric(pre_processed_data['Frete'], errors= 'coerce')
 
-    processed_data['Pago'] = processed_data['Pago'].astype(int, errors='ignore')
+    pre_processed_data['Pago'] = pd.to_numeric(pre_processed_data['Pago'], errors= 'coerce')
 
     # Changing column names
-    processed_data = processed_data.rename(columns={
+    pre_processed_data = pre_processed_data.rename(columns={
         'Prato': 'prato', 
         'Turno': 'turno', 
         'Data': 'data_venda', 
@@ -53,9 +54,11 @@ def pre_processing_data(data):
         'Taxa': 'valor_adicional', 
         'Frete': 'valor_frete',
         'Pago': 'pedido_pago'})
+    
+    # Creating dimension 'prato'
+    pre_processed_data = dim_prato.create_dim_prato(pre_processed_data)
 
-
-    return processed_data
+    return pre_processed_data
 
 if __name__ == '__main__':
 
