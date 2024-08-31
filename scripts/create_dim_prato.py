@@ -291,6 +291,18 @@ def create_dim_prato(data):
 
     data = create_colunm_prato_principal(data)
 
+    dim_prato = pd.DataFrame()
+
+    dim_prato['prato_principal'] = sorted(data['prato_principal'].unique())
+
+    dim_prato['id_prato_principal'] = dim_prato.index + 1
+
+    data = data.merge(dim_prato, on='prato_principal', how='left')
+
+    data = data.drop(columns=['prato_principal'])
+
+    dim_prato.to_csv('../data/outputs/dim_prato.csv', index=False, sep=';')
+
     return data
 
 
