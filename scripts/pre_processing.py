@@ -1,5 +1,6 @@
 import pandas as pd
 import create_dim_prato as dim_prato
+import create_dim_acompanhamento as dim_acompanhamento
 
 def pre_processing_data(data):
 
@@ -57,6 +58,11 @@ def pre_processing_data(data):
     
     # Creating dimension 'prato'
     pre_processed_data = dim_prato.create_dim_prato(pre_processed_data)
+
+    # Creating dimension 'acompanhamento'
+    pre_processed_data = dim_acompanhamento.create_dim_acompanhamnento(pre_processed_data)
+
+    pre_processed_data.drop(columns = ['prato'], inplace= True)
 
     return pre_processed_data
 
