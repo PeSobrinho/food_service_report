@@ -45,6 +45,9 @@ def pre_processing_data(data):
 
     pre_processed_data['Pago'] = pd.to_numeric(pre_processed_data['Pago'], errors= 'coerce')
 
+    # Removing blank dates
+    pre_processed_data = pre_processed_data.dropna(subset=['Data'])
+
     # Changing column names
     pre_processed_data = pre_processed_data.rename(columns={
         'Prato': 'prato', 
