@@ -1,6 +1,6 @@
 # Food Service Report
 
-Um projeto de análise de dados para estabelecimentos alimentícios. A 'Sabor da Casa' não existe, foi criada apenas para este projeto. Os dados vêm de uma base real de um negócio local e foram anonimizados e reduzidos com o único própósito de se utilizado no projeto.
+Um projeto de análise de dados para estabelecimentos alimentícios. A 'Sabor da Casa' não existe, foi criada apenas para este projeto. Os dados vêm de uma base real de um negócio local e foram anonimizados e reduzidos com o único própósito de se utilizado no projeto: https://docs.google.com/spreadsheets/d/168W2DPKbgVogs__Z8xwt7AuvhsovLbSu0N2PrEGcW1w/edit?usp=sharing.
 
 ![Template do Dashboard](pbi_print.png)
 
