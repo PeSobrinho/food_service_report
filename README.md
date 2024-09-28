@@ -2,7 +2,7 @@
 
 Um projeto de análise de dados para estabelecimentos alimentícios. A 'Sabor da Casa' não existe, foi criada apenas para este projeto. Os dados vêm de uma base real de um negócio local e foram anonimizados e reduzidos com o único própósito de se utilizado no projeto.
 
-![Template do Dashboard](design/food_service_dashboard_template.png)
+![Template do Dashboard](pbi_print.png)
 
 
 ## Descrição
