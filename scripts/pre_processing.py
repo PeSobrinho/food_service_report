@@ -28,7 +28,7 @@ def pre_processing_data(data):
     # Replacing 'OK' values in 'pedido_pago' column with 1, and other values with 0
 
     pre_processed_data['Pago'] = pre_processed_data['Pago'].replace('OK', 1)
-    pre_processed_data['Pago'] = pre_processed_data['Pago'].replace(pd.NA, 0)
+    pre_processed_data['Pago'] = pre_processed_data['Pago'].fillna(0)
 
 
     # change data types
@@ -44,6 +44,9 @@ def pre_processing_data(data):
     pre_processed_data['Frete'] = pd.to_numeric(pre_processed_data['Frete'], errors= 'coerce')
 
     pre_processed_data['Pago'] = pd.to_numeric(pre_processed_data['Pago'], errors= 'coerce')
+
+    # Removing blank dates
+    pre_processed_data = pre_processed_data.dropna(subset=['Data'])
 
     # Changing column names
     pre_processed_data = pre_processed_data.rename(columns={
