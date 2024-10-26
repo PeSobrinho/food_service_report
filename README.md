@@ -5,11 +5,12 @@ Um projeto de análise de dados para estabelecimentos alimentícios. A 'Sabor da
 ![Template do Dashboard](pbi_print.png)
 
 
+[Meu LinkedIn](https://www.linkedin.com/in/pedro-sobrinho-data/)
 ## Descrição
 
 Este projeto consiste em um relatório analítico projetado para auxiliar estabelecimentos do setor alimentício na tomada de decisões baseadas em dados. Utilizando técnicas de análise de dados e visualização, o relatório fornece insights valiosos sobre o desempenho do negócio, tendências de vendas e preferências dos clientes.
 
-## Funcionalidades
+## Métricas e análises
 
 - Análise de vendas por período
 - Identificação dos pratos mais populares
